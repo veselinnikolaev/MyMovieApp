@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head}"></head>
+<body>
+<div id="container-wrapper">
+    <header th:replace="~{fragments/navbar}"></header>
+    <div id="root-register">
+        <h1 class="text-center text-light">Register</h1>
+        <hr class="hr-2 bg-white w-30">
+        <form class="form w-25  mx-auto" th:action="@{/users/register}" th:method="post" th:object="${model}">
+            <div class="form-group">
+                <label for="username" class="font-weight-bold text-light">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username..." name="username" th:errorclass="bg-danger" th:value="${model.username}">
+
+                    <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('username')}">
+                        <small class="text-danger" th:errors="*{username}"></small>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+            </div>
+            <div class="form-group">
+                <label for="password" class="font-weight-bold text-light">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password..." name="password" th:errorclass="bg-danger" th:value="${model.password}">
+
+                    <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('password')}">
+                        <small class="text-danger" th:errors="*{password}"></small>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword" class="font-weight-bold text-light">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password..."
+                       name="confirmPassword" th:errorclass="bg-danger">
+                    <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('confirmPassword')}">
+                        <small class="text-danger" th:errors="*{confirmPassword}"></small>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="font-weight-bold text-light">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email..." name="email" th:errorclass="bg-danger" th:value="${model.email}">
+                    <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('email')}">
+                        <small class="text-danger" th:errors="*{email}"></small>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+            </div>
+            <hr class="hr-2 bg-white">
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-dark">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+</footer>
+</body>
+
+</html>

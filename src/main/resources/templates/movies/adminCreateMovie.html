@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="~{fragments/head}"></th:block>
+</head>
+<body>
+<div id="container-wrapper">
+    <header>
+        <th:block th:replace="~{fragments/navbar}"></th:block>
+    </header>
+    <div id="root">
+        <h1 class="text-center text-light">Create Movie</h1>
+        <hr class="hr-2 bg-white w-30">
+        <form class="form w-25 mx-auto" th:action="@{/movies/adminCreateMovie}" th:method="post" th:object="${createMovie}"
+              enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="movie-name" class="font-weight-bold text-light">Name</label>
+                <input type="text" class="form-control" id="movie-name" placeholder="Movie name is .." name="name" th:errorclass="bg-danger" th:value="${createMovie.name}">
+                <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('name')}">
+                    <small class="text-danger" th:errors="*{name}"></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="movie-description" class="font-weight-bold text-light">Description</label>
+                <textarea th:rows="4" type="text" class="form-control" id="movie-description" placeholder="Movie Description.."
+                          name="description" th:errorclass="bg-danger" th:value="${createMovie.description}"></textarea>
+                <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('description')}">
+                    <small class="text-danger" th:errors="*{description}"></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="movie-date" class="font-weight-bold text-light">Premiere Date</label>
+                <input type="text" class="form-control" id="movie-date" placeholder="Premiere date is .."
+                       name="premiereDate" th:errorclass="bg-danger" th:value="${createMovie.premiereDate}">
+                <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('premiereDate')}">
+                    <small class="text-danger" th:errors="*{premiereDate}"></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="select-movie-genre" class="font-weight-bold text-light">Genre</label>
+
+                <select id="select-movie-genre" class="form-control" name="genre" th:errorclass="bg-danger">
+                    <option selected="selected" disabled>Genre</option>
+
+                    <option th:each="genre : ${T(com.example.mymovieapp.model.enums.Genre).values()}"
+                            th:value="${genre}" th:text="${genre}"
+                            th:selected="${genre == createMovie.genre}"></option>
+
+                </select>
+                <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('genre')}">
+                    <small class="text-danger" th:errors="*{genre}"></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="md-form mt-0 form-group justify-content-center">
+                <label for="select-one-director" class="font-weight-bold text-light">Director</label>
+
+                <select id="select-one-director" class="form-control" name="director" th:errorclass="bg-danger" >
+                    <option selected="selected" disabled>Director search</option>
+                        <option th:each="director,row : ${directors}"
+                                th:value="${director.id}"
+                                th:text="${director.name}"
+                                ></option>
+                </select>
+                <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('director')}">
+                    <small class="text-danger" th:errors="*{director}"></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="md-form mt-0 form-group justify-content-center">
+                <label for="select-many-actors" class="font-weight-bold text-light">Actors</label>
+
+                <select id="select-many-actors" class="form-control" multiple="multiple" name="actors" th:errorclass="bg-danger" th:value="${createMovie.actors}">
+                    <option th:each="actor,row : ${actors}"
+                            th:value="${actor.id}"
+                            th:text="${actor.name}"
+                            ></option>
+                </select>
+                <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('actors')}">
+                    <small class="text-danger" th:errors="*{actors}"></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group justify-content-center">
+                <label for="movie-photo" class="font-weight-bold text-light">Movie Cover</label>
+                <input type="file" id="movie-photo" class="form-control-file"  name="photo" th:errorclass="bg-danger" style="background-color: white;">
+                <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('photo')}">
+                    <small class="text-danger" th:errors="*{photo}"></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group justify-content-center">
+                <label for="movie-minutes" class="font-weight-bold text-light">Movie duration</label>
+
+                <input type="number" class="form-control" id="movie-minutes" placeholder="Movie duration is .."
+                name="movieMinutes" th:errorclass="bg-danger" th:value="${createMovie.movieMinutes}">
+                <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('movieMinutes')}">
+                    <small class="text-danger" th:errors="*{movieMinutes}"></small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <hr class="hr-2 bg-white">
+
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary btn-lg">Create Movie</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+</footer>
+</body>
+
+</html>
