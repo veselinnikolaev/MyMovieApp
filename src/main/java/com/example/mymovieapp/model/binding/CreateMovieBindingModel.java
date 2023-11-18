@@ -3,7 +3,6 @@ package com.example.mymovieapp.model.binding;
 import com.example.mymovieapp.model.entity.Actor;
 import com.example.mymovieapp.model.entity.Director;
 import com.example.mymovieapp.model.enums.Genre;
-import com.example.mymovieapp.validation.annotation.ValidFormat;
 import com.example.mymovieapp.validation.annotation.ValidMultipartFile;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,7 +19,6 @@ public class CreateMovieBindingModel {
     @ValidMultipartFile
     private MultipartFile photo;
     @NotBlank(message = "Premiere date cannot be empty!")
-    @ValidFormat
     private String premiereDate;
     @NotNull(message = "You must enter director!")
     private Director director;

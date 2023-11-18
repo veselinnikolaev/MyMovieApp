@@ -20,8 +20,20 @@ public class Movie extends BaseEntity{
     @Column(nullable = false, updatable = false)
     private LocalDate premiereDate;
     @ManyToOne
+    @JoinColumn(name = "director_id", referencedColumnName = "id", nullable = false)
     private Director director;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "movies_actors",
+            joinColumns = @JoinColumn(
+                    name = "movie_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "actor_id",
+                    referencedColumnName = "id"
+            )
+    )
     private List<Actor> actors;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

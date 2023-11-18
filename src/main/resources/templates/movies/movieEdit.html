@@ -12,7 +12,7 @@
     <div id="root">
         <h1 class="text-center text-light">Edit Movie</h1>
         <hr class="hr-2 bg-white w-30">
-        <form class="form w-25 mx-auto" th:href="@{/movies/movieEdit/{id}(id=${movieId})}" method="post"
+        <form class="form w-25 mx-auto" th:href="@{/movies/movieEdit/{id}(id=${movieId})}" th:method="post"
               enctype="multipart/form-data">
             <div class="form-group">
                 <label for="movie-name" class="font-weight-bold text-light">Name</label>
@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <label for="movie-premiere-daate" class="font-weight-bold text-light">Premiere Date</label>
-                <input type="text" class="form-control" id="movie-premiere-daate" th:value="${movie.premiereDate}"
+                <input type="date" class="form-control" id="movie-premiere-daate" th:value="${movie.premiereDate}"
                        name="premiere-date">
             </div>
 
@@ -59,7 +59,7 @@
                         <th:block th:if="${movie.director.id == director.id}" >
                             <option th:value="${director.id}" th:text="${director.name}" selected="selected"></option>
                         </th:block>
-                        <th:block th:unless="${movie.director == director}">
+                        <th:block th:unless="${movie.director.id == director.id}">
                             <option th:value="${director.id}" th:text="${director.name}"></option>
                         </th:block>
                     </th:block>
@@ -70,9 +70,12 @@
                 <label for="select-many-actors" class="font-weight-bold text-light">Actors</label>
 
                 <select id="select-many-actors" class="form-control" multiple="multiple" name="actors">
-                    <option th:each="actor,row : ${actors}"
-                            th:value="${actor.id}"
-                            th:text="${actor.name}"></option>
+                    <th:block th:each="actor : ${actors}">
+                        <option th:value="${actor.id}"
+                                th:text="${actor.name}"
+                                th:selected="${#lists.contains(movie.actors, actor)}">
+                        </option>
+                    </th:block>
                 </select>
             </div>
 

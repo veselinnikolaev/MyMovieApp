@@ -6,6 +6,7 @@ import com.example.mymovieapp.model.service.RoleServiceModel;
 import com.example.mymovieapp.model.service.UserServiceModel;
 import com.example.mymovieapp.repository.RoleRepository;
 import com.example.mymovieapp.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,7 @@ public class UserServiceImpl implements UserService {
         this.modelMapper.map(this.userRepository.saveAndFlush(user), UserServiceModel.class);
     }
     @Override
+    @Transactional
     public void deleteUser(String id) {
         UserEntity user = userRepository.findById(UUID.fromString(id)).orElseThrow(IllegalArgumentException::new);
         this.userRepository.delete(user);

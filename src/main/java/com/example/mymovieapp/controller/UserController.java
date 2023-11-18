@@ -92,7 +92,7 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
-    @PostMapping("/userDelete/{id}")
+    @RequestMapping(value = "/userDelete/{id}", method = RequestMethod.DELETE)
     public ModelAndView userDeleteConfirm(@PathVariable String id) {
         this.userService.deleteUser(id);
 
@@ -102,7 +102,7 @@ public class UserController extends BaseController {
     @GetMapping("/userProfile")
     public ModelAndView seeUserProfile(Principal principal) {
         UserViewModel userViewModel = this.modelMapper.map(this.userService.findUserByUsername(principal.getName()), UserViewModel.class);
-        ModelAndView modelAndView = new ModelAndView("/users/userProfile");
+        ModelAndView modelAndView = new ModelAndView("users/userProfile");
 
         modelAndView.addObject("user", userViewModel);
         modelAndView.addObject("movies", userViewModel.getMovies());

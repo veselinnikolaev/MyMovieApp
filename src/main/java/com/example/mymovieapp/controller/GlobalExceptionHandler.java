@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
+
 @ControllerAdvice
 public class GlobalExceptionHandler extends BaseController{
 
@@ -17,7 +19,7 @@ public class GlobalExceptionHandler extends BaseController{
             throwable = throwable.getCause();
         }
 
-        modelAndView.addObject("message", throwable.getMessage());
+        modelAndView.addObject("message", String.join(" ", Arrays.stream(throwable.getStackTrace()).map(StackTraceElement::toString).toList()));
 
         return modelAndView;
     }

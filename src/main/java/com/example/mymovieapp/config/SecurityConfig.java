@@ -9,11 +9,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
-        return httpSecurity.authorizeHttpRequests(
+        return httpSecurity.csrf().disable().authorizeHttpRequests(
                 // Define which urls are visible by which users
                 authorizeRequests -> authorizeRequests
                         // All static resources which are situated in js, images, css are available for anyone
@@ -45,6 +45,7 @@ public class SecurityConfig {
                         // invalidate the HTTP session
                         .invalidateHttpSession(true)
         ).build();
+
     }
 
     @Bean
@@ -53,4 +54,5 @@ public class SecurityConfig {
         // to representation which spring security understands.
         return new MyMovieAppUserDetailsService(userRepository);
     }
+
 }

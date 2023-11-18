@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -70,6 +71,7 @@ public class MovieController extends BaseController {
         if(bindingResult.hasErrors()){
             return super.view("/movies/adminCreateMovie");
         }
+
         this.movieService.addMovie(model);
 
         return super.redirect("/home");
@@ -112,6 +114,7 @@ public class MovieController extends BaseController {
 
     @PostMapping("/movieEdit/{id}")
     public ModelAndView movieEditConfirm(@PathVariable String id, @ModelAttribute CreateMovieBindingModel model) throws IOException {
+
         MovieServiceModel movieServiceModel = this.modelMapper.map(model, MovieServiceModel.class);
 
         movieServiceModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));

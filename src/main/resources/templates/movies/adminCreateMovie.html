@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="movie-date" class="font-weight-bold text-light">Premiere Date</label>
-                <input type="text" class="form-control" id="movie-date" placeholder="Premiere date is .."
+                <input type="date" class="form-control" id="movie-date" placeholder="Premiere date is .."
                        name="premiereDate" th:errorclass="bg-danger" th:value="${createMovie.premiereDate}">
                 <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('premiereDate')}">
                     <small class="text-danger" th:errors="*{premiereDate}"></small>
@@ -75,7 +75,7 @@
 
                 <select id="select-one-director" class="form-control" name="director" th:errorclass="bg-danger" >
                     <option selected="selected" disabled>Director search</option>
-                        <option th:each="director,row : ${directors}"
+                        <option th:each="director : ${directors}"
                                 th:value="${director.id}"
                                 th:text="${director.name}"
                                 ></option>
@@ -92,7 +92,7 @@
                 <label for="select-many-actors" class="font-weight-bold text-light">Actors</label>
 
                 <select id="select-many-actors" class="form-control" multiple="multiple" name="actors" th:errorclass="bg-danger" th:value="${createMovie.actors}">
-                    <option th:each="actor,row : ${actors}"
+                    <option th:each="actor : ${actors}"
                             th:value="${actor.id}"
                             th:text="${actor.name}"
                             ></option>

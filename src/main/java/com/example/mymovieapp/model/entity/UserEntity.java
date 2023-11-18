@@ -19,9 +19,27 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false, unique = true)
     @Email
     private String email;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_movies",
+            joinColumns = @JoinColumn(
+                    name = "user_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "movie_id",
+                    referencedColumnName = "id"
+            ))
     private List<Movie> movies;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "id"
+    ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id",
+                    referencedColumnName = "id"
+            ))
     private Set<Role> authorities;
 
     public String getUsername() {

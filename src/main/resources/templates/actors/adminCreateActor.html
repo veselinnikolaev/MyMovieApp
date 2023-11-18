@@ -19,7 +19,7 @@
                 <input type="text" class="form-control" id="actor-name" placeholder="Actor name is .."
                        name="name" th:errorclass="bg-danger">
                 <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('name')}">
-<!--                    <small class="text-danger" th:errors="*{name}"></small> TODO: uncomment-->
+                    <small class="text-danger" th:errors="*{name}"></small>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -31,7 +31,7 @@
                 <input type="text" class="form-control" id="actor-biography" placeholder="Actor biography.."
                        name="biography" th:errorclass="bg-danger">
                 <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('biography')}">
-<!--                    <small class="text-danger" th:errors="*{biography}"></small>-->
+                    <small class="text-danger" th:errors="*{biography}"></small>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -42,7 +42,7 @@
                 <label for="actor-photo" class="font-weight-bold text-light">Actor photo</label>
                 <input type="file" id="actor-photo" class="form-control-file" name="photo" th:errorclass="bg-danger" style="background-color: white;">
                 <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('photo')}">
-<!--                    <small class="text-danger" th:errors="*{photo}"></small>-->
+                    <small class="text-danger" th:errors="*{photo}"></small>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
