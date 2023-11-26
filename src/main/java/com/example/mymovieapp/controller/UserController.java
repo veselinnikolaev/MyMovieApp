@@ -111,8 +111,8 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/userProfile/{id}")
-    public ModelAndView deleteMovieFromWatchList(@PathVariable String id) {
-        UserServiceModel userServiceModel = this.userService.findUserById(id);
+    public ModelAndView deleteMovieFromWatchList(@PathVariable String id, Principal principal) {
+        UserServiceModel userServiceModel = this.userService.findUserByUsername(principal.getName());
         List<UUID> moviesIds = userServiceModel.getMovies().stream().map(MovieServiceModel::getId)
                 .toList();
 

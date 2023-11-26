@@ -35,6 +35,12 @@ logging:
         SQL: DEBUG
       nodeValue: WARN
     blog: WARN
+mail:
+  myMovieApp: "MyMovieApp@email.com"
+  host: localhost
+  port: 1025
+  username: ${MAIL_USER:username}
+  password: ${MAIL_PASSWORD:password}
 server:
   error:
     include-stacktrace: always
