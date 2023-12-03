@@ -6,6 +6,7 @@ import com.example.mymovieapp.model.entity.Actor;
 import com.example.mymovieapp.model.entity.Director;
 import com.example.mymovieapp.model.entity.Movie;
 import com.example.mymovieapp.model.enums.Genre;
+import com.example.mymovieapp.model.service.ActorServiceModel;
 import com.example.mymovieapp.model.service.MovieServiceModel;
 import com.example.mymovieapp.repository.ActorRepository;
 import com.example.mymovieapp.repository.MovieRepository;
@@ -97,5 +98,10 @@ public class MovieServiceImpl implements MovieService {
         Movie movieToReturn = this.movieRepository.saveAndFlush(movie);
 
         this.modelMapper.map(movieToReturn, MovieServiceModel.class);
+    }
+
+    @Override
+    public List<ActorServiceModel> getAllActors(String id) {
+        return this.movieRepository.findById(UUID.fromString(id)).get().getActors().stream().map(actor -> this.modelMapper.map(actor, ActorServiceModel.class)).toList();
     }
 }

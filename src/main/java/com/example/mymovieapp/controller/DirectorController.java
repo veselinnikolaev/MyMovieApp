@@ -58,7 +58,7 @@ public class DirectorController extends BaseController {
 
         directorModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));
 
-        this.directorService.addActor(directorModel);
+        this.directorService.addDirector(directorModel);
 
         return super.redirect("/home");
     }
@@ -97,7 +97,12 @@ public class DirectorController extends BaseController {
     @PostMapping("/directorEdit/{id}")
     public ModelAndView directorEditConfirm(@PathVariable String id, @ModelAttribute CreateDirectorBindingModel model) throws IOException {
         DirectorServiceModel directorServiceModel = this.modelMapper.map(model, DirectorServiceModel.class);
-        directorServiceModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));
+
+        if(model.getPhoto() == null || model.getPhoto().isEmpty()){
+            directorServiceModel.setPhoto(this.directorService.findDirectorById(id).getPhoto());
+        }else {
+            directorServiceModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));
+        }
 
         this.directorService.editDirector(id, directorServiceModel);
 

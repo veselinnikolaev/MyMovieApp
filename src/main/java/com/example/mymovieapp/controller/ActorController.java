@@ -97,7 +97,12 @@ public class ActorController extends BaseController {
     @PostMapping("/actorEdit/{id}")
     public ModelAndView editActorConfirm(@PathVariable String id, @ModelAttribute CreateActorBindingModel model) throws IOException {
         ActorServiceModel actorServiceModel = this.modelMapper.map(model, ActorServiceModel.class);
-        actorServiceModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));
+
+        if(model.getPhoto() == null || model.getPhoto().isEmpty()){
+            actorServiceModel.setPhoto(this.actorService.findActorById(id).getPhoto());
+        }else {
+            actorServiceModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));
+        }
 
         this.actorService.editActor(id, actorServiceModel);
 

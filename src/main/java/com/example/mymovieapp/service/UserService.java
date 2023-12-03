@@ -14,9 +14,9 @@ public interface UserService {
 
     void registerUser(UserServiceModel userServiceModel);
 
-    void deleteUser(String id);
+    UserServiceModel deleteUser(String id);
 
-    void updateMovieWatchList(UserServiceModel userServiceModel);
+    UserServiceModel updateMovieWatchList(UserServiceModel userServiceModel);
 
     UserServiceModel findByEmail(String email);
 }

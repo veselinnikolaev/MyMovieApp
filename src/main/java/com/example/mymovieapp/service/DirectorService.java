@@ -12,13 +12,13 @@ public interface DirectorService {
 
     DirectorServiceModel findDirectorByName(String directorName);
 
-    void addActor(DirectorServiceModel directorModel);
+    void addDirector(DirectorServiceModel directorModel);
 
     DirectorServiceModel findDirectorById(String id);
 
     void deleteDirector(String id);
 
-    void editDirector(String id, DirectorServiceModel directorServiceModel);
+    DirectorServiceModel editDirector(String id, DirectorServiceModel directorServiceModel);
 
     List<MovieViewModel> getAllMoviesForDirector(String id);
 }

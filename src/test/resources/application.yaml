@@ -1,0 +1,28 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: never
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+
+mail:
+  myMovieApp: "MyMovieApp@email.com"
+  host: localhost
+  port: 3333
+  username: test
+  password: topsecret
+cloudinary:
+  cloud-name: dugpa0ch5
+  api-key: 967517151849929
+  api-secret: Ll8v6JgA1m9EndPM7EgGwrN_3WA

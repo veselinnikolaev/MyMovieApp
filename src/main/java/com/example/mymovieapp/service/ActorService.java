@@ -10,13 +10,13 @@ public interface ActorService {
 
     List<ActorServiceModel> findAllActors();
 
-    void addActor(ActorServiceModel actorModel);
+    ActorServiceModel addActor(ActorServiceModel actorModel);
 
     ActorServiceModel findActorById(String id);
 
     void deleteActor(String id);
 
-    void editActor(String id, ActorServiceModel actorServiceModel);
+    ActorServiceModel editActor(String id, ActorServiceModel actorServiceModel);
 
     List<MovieViewModel> getAllMoviesForActor(String id);
 }

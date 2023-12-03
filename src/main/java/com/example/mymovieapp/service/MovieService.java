@@ -1,6 +1,7 @@
 package com.example.mymovieapp.service;
 
 import com.example.mymovieapp.model.binding.CreateMovieBindingModel;
+import com.example.mymovieapp.model.service.ActorServiceModel;
 import com.example.mymovieapp.model.service.MovieServiceModel;
 
 import java.io.IOException;
@@ -18,4 +19,6 @@ public interface MovieService {
     void deleteMovie(String id);
 
     void editMovie(String id, MovieServiceModel movieServiceModel);
+
+    List<ActorServiceModel> getAllActors(String id);
 }

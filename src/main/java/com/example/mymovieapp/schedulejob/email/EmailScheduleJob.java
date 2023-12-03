@@ -1,10 +1,9 @@
-package com.example.mymovieapp.scheduleJob;
+package com.example.mymovieapp.schedulejob.email;
 
 import com.example.mymovieapp.model.entity.UserEntity;
 import com.example.mymovieapp.service.EmailService;
 import com.example.mymovieapp.service.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -26,8 +25,8 @@ public class EmailScheduleJob {
     }
 
     @Async
-    //@Scheduled(cron = "0 0 12 24 12 ?")
-    @Scheduled(fixedRate = 10_000)
+    @Scheduled(cron = "0 0 12 24 12 *")
+    //@Scheduled(fixedRate = 10_000)
     public void christmasScheduleJob() {
         List<UserEntity> users = userService.findAllUsers()
                 .stream()

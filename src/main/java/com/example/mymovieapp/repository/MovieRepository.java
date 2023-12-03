@@ -1,5 +1,6 @@
 package com.example.mymovieapp.repository;
 
+import com.example.mymovieapp.model.entity.Actor;
 import com.example.mymovieapp.model.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

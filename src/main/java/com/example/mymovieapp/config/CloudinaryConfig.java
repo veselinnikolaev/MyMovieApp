@@ -1,6 +1,7 @@
 package com.example.mymovieapp.config;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,10 +20,9 @@ public class CloudinaryConfig {
 
     @Bean
     public Cloudinary cloudinary() {
-        return new Cloudinary(new HashMap<String, Object>(){{
-            put("cloud_name", cloudApiName);
-            put("api_key", cloudApiKey);
-            put("api_secret", cloudApiSecret);
-        }});
+        return new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", cloudApiName,
+                "api_key", cloudApiKey,
+                "api_secret", cloudApiSecret));
     }
 }

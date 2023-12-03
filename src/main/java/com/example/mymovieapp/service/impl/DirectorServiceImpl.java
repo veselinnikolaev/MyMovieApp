@@ -48,7 +48,7 @@ public class DirectorServiceImpl implements DirectorService {
     }
 
     @Override
-    public void addActor(DirectorServiceModel directorServiceModel) {
+    public void addDirector(DirectorServiceModel directorServiceModel) {
         Director director = this.modelMapper.map(directorServiceModel, Director.class);
 
         this.modelMapper.map(this.directorRepository.saveAndFlush(director), DirectorServiceModel.class);
@@ -74,7 +74,7 @@ public class DirectorServiceImpl implements DirectorService {
     }
 
     @Override
-    public void editDirector(String id, DirectorServiceModel directorServiceModel) {
+    public DirectorServiceModel editDirector(String id, DirectorServiceModel directorServiceModel) {
         Director director = this.directorRepository.findById(UUID.fromString(id))
                 .orElseThrow(IllegalArgumentException::new);
 
@@ -82,7 +82,7 @@ public class DirectorServiceImpl implements DirectorService {
         director.setBiography(directorServiceModel.getBiography());
         director.setPhoto(directorServiceModel.getPhoto());
 
-        this.modelMapper.map(this.directorRepository.saveAndFlush(director), DirectorServiceModel.class);
+        return this.modelMapper.map(this.directorRepository.saveAndFlush(director), DirectorServiceModel.class);
     }
 
     @Override

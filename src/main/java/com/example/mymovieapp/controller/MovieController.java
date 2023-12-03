@@ -117,7 +117,15 @@ public class MovieController extends BaseController {
 
         MovieServiceModel movieServiceModel = this.modelMapper.map(model, MovieServiceModel.class);
 
-        movieServiceModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));
+        if(model.getActors() == null || model.getActors().isEmpty()){
+            movieServiceModel.setActors(this.movieService.getAllActors(id));
+        }
+
+        if(model.getPhoto() == null || model.getPhoto().isEmpty()){
+            movieServiceModel.setPhoto(this.movieService.findMovieById(id).getPhoto());
+        }else {
+            movieServiceModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));
+        }
 
         this.movieService.editMovie(id, movieServiceModel);
 

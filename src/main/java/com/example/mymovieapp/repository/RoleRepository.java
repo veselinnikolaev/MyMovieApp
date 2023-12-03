@@ -13,4 +13,6 @@ public interface RoleRepository extends JpaRepository<Role, UUID> {
     List<Role> findAll();
 
     Role findByAuthority(UserRoleEnum role);
+
+    List<Role> findAllByAuthorityIn(List<UserRoleEnum> roles);
 }

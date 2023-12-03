@@ -44,10 +44,10 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public void addActor(ActorServiceModel actorServiceModel) {
+    public ActorServiceModel addActor(ActorServiceModel actorServiceModel) {
         Actor actor = this.modelMapper.map(actorServiceModel, Actor.class);
 
-        this.modelMapper.map(this.actorRepository.saveAndFlush(actor), ActorServiceModel.class);
+        return this.modelMapper.map(this.actorRepository.saveAndFlush(actor), ActorServiceModel.class);
     }
 
     @Override
@@ -67,14 +67,14 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public void editActor(String id, ActorServiceModel actorServiceModel) {
+    public ActorServiceModel editActor(String id, ActorServiceModel actorServiceModel) {
         Actor actor = this.actorRepository.findById(UUID.fromString(id)).orElseThrow(IllegalArgumentException::new);
 
         actor.setName(actorServiceModel.getName());
         actor.setBiography(actorServiceModel.getBiography());
         actor.setPhoto(actorServiceModel.getPhoto());
 
-        this.modelMapper.map(actor, ActorServiceModel.class);
+        return this.modelMapper.map(actor, ActorServiceModel.class);
     }
 
     @Override

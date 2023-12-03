@@ -44,7 +44,6 @@ public class UserController extends BaseController {
             return new ModelAndView("/users/register");
         }
 
-
         UserServiceModel userServiceModel = this.modelMapper.map(model, UserServiceModel.class);
         this.userService.registerUser(userServiceModel);
 

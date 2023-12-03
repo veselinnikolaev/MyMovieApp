@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface ActorRepository extends JpaRepository<Actor, UUID> {
 
     List<Actor> findAll();
+
+    Actor findByName(String name);
 }

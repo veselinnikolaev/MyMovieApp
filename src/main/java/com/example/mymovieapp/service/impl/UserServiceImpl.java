@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserServiceModel findUserById(String id) {
         return this.userRepository.findById(UUID.fromString(id))
-                .map(u -> this.modelMapper.map(u, UserServiceModel.class))
+                .map(user -> this.modelMapper.map(user, UserServiceModel.class))
                 .orElseThrow(() -> new Error("Username not found!"));
     }
 
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     public List<UserServiceModel> findAllUsers() {
         return this.userRepository.findAll()
                 .stream()
-                .map(u -> this.modelMapper.map(u, UserServiceModel.class))
+                .map(user -> this.modelMapper.map(user, UserServiceModel.class))
                 .collect(Collectors.toList());
     }
 
@@ -67,23 +67,23 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     @Transactional
-    public void deleteUser(String id) {
+    public UserServiceModel deleteUser(String id) {
         UserEntity user = userRepository.findById(UUID.fromString(id)).orElseThrow(IllegalArgumentException::new);
         this.userRepository.delete(user);
-        modelMapper.map(user, UserServiceModel.class);
+        return modelMapper.map(user, UserServiceModel.class);
     }
 
     @Override
-    public void updateMovieWatchList(UserServiceModel userServiceModel) {
+    public UserServiceModel updateMovieWatchList(UserServiceModel userServiceModel) {
         UserEntity userToAddMovie = this.modelMapper.map(userServiceModel, UserEntity.class);
 
-        this.modelMapper.map(this.userRepository.saveAndFlush(userToAddMovie), UserServiceModel.class);
+        return this.modelMapper.map(this.userRepository.saveAndFlush(userToAddMovie), UserServiceModel.class);
     }
 
     @Override
     public UserServiceModel findByEmail(String email) {
         return this.userRepository.findByEmail(email)
-                .map(u -> this.modelMapper.map(u, UserServiceModel.class))
+                .map(user -> this.modelMapper.map(user, UserServiceModel.class))
                 .orElseThrow(() -> new Error("Email not found!"));
     }
 }
