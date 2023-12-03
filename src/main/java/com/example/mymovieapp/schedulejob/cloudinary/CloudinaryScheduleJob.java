@@ -27,8 +27,8 @@ public class CloudinaryScheduleJob {
         this.cloudinaryService = cloudinaryService;
     }
 
-    //@Scheduled(cron = "0 0 0/12 * * *")
-    @Scheduled(fixedRate = 10_000)
+    @Scheduled(cron = "0 0 0/12 * * *")
+    //@Scheduled(fixedRate = 10_000)
     public void deleteUnusedImages(){
         List<String> movieImageUrls = movieService.getAllMovies().stream().map(MovieServiceModel::getPhoto).toList();
         List<String> directorImageUrls = directorService.findAllDirectors().stream().map(DirectorServiceModel::getPhoto).toList();
