@@ -55,7 +55,7 @@ public class UserController extends BaseController {
         return super.view("users/login");
     }
 
-    @GetMapping("/login/error")
+    @PostMapping("/login/error")
     public ModelAndView onFailure(
             @ModelAttribute("username") String username) {
         ModelAndView modelAndView = new ModelAndView("users/login");
@@ -64,7 +64,6 @@ public class UserController extends BaseController {
         modelAndView.addObject("bad_credentials", true);
 
         return modelAndView;
-        // TODO: fix the login failure validation
     }
 
     @GetMapping("/allUsersAdminSettings")
