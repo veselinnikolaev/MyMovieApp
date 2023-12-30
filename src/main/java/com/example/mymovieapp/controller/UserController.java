@@ -55,7 +55,7 @@ public class UserController extends BaseController {
         return super.view("users/login");
     }
 
-    @PostMapping("/login/error")
+    @GetMapping("/login/error")
     public ModelAndView onFailure(
             @ModelAttribute("username") String username) {
         ModelAndView modelAndView = new ModelAndView("users/login");

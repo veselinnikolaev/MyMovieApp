@@ -100,7 +100,7 @@ public class ActorController extends BaseController {
 
         if(model.getPhoto() == null || model.getPhoto().isEmpty()){
             actorServiceModel.setPhoto(this.actorService.findActorById(id).getPhoto());
-        }else {
+        } else {
             actorServiceModel.setPhoto(this.cloudinaryService.uploadImage(model.getPhoto()));
         }
 

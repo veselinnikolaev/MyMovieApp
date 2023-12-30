@@ -13,7 +13,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -66,10 +65,10 @@ public class MovieController extends BaseController {
     }
 
     @PostMapping("/adminCreateMovie")
-    public ModelAndView addMovieConfirm(@ModelAttribute("createMovie") @Valid CreateMovieBindingModel model, BindingResult bindingResult) throws IOException {
+    public ModelAndView addMovieConfirm(@ModelAttribute("createMovie") @Valid CreateMovieBindingModel model, BindingResult bindingResult, ModelAndView modelAndView) throws IOException {
 
         if(bindingResult.hasErrors()){
-            return super.view("/movies/adminCreateMovie");
+            return addMovieView(model);
         }
 
         this.movieService.addMovie(model);

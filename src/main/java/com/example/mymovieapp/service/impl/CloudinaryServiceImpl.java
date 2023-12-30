@@ -25,9 +25,8 @@ public class CloudinaryServiceImpl implements CloudinaryService {
                     .createTempFile("temp-file", multipartFile.getOriginalFilename());
             multipartFile.transferTo(file);
 
-            return this.cloudinary.uploader()
-                    .upload(file, ObjectUtils.emptyMap())
-                    .get("url").toString();
+                return this.cloudinary.uploader()
+                        .upload(file, ObjectUtils.emptyMap()).get("url").toString();
     }
 
     @Override

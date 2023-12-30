@@ -37,7 +37,7 @@ public class SecurityConfig{
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/home")
-                        .failureForwardUrl("/users/login/error")
+                        .failureUrl("/users/login/error")
         ).logout(
                 logout -> logout
                         // the URL where we should POST something in order to perform the logout

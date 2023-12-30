@@ -17,7 +17,7 @@
 
             <div class="form-group">
                 <label for="movie-name" class="font-weight-bold text-light">Name</label>
-                <input type="text" class="form-control" id="movie-name" placeholder="Movie name is .." name="name" th:errorclass="bg-danger" th:value="${createMovie.name}">
+                <input type="text" class="form-control" id="movie-name" placeholder="Movie name is .." name="name" th:errorclass="bg-danger" th:value="*{name}">
                 <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('name')}">
                     <small class="text-danger" th:errors="*{name}"></small>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label for="movie-description" class="font-weight-bold text-light">Description</label>
                 <textarea th:rows="4" type="text" class="form-control" id="movie-description" placeholder="Movie Description.."
-                          name="description" th:errorclass="bg-danger" th:value="${createMovie.description}"></textarea>
+                          name="description" th:errorclass="bg-danger" th:value="*{description}"></textarea>
                 <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('description')}">
                     <small class="text-danger" th:errors="*{description}"></small>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -42,7 +42,7 @@
             <div class="form-group">
                 <label for="movie-date" class="font-weight-bold text-light">Premiere Date</label>
                 <input type="date" class="form-control" id="movie-date" placeholder="Premiere date is .."
-                       name="premiereDate" th:errorclass="bg-danger" th:value="${createMovie.premiereDate}">
+                       name="premiereDate" th:errorclass="bg-danger" th:value="*{premiereDate}">
                 <div class="alert alert-warning alert-dismissible fade show m-1" role="alert" th:if="${#fields.hasErrors('premiereDate')}">
                     <small class="text-danger" th:errors="*{premiereDate}"></small>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

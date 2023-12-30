@@ -63,7 +63,7 @@ public class ActorServiceImpl implements ActorService {
 
         this.actorRepository.delete(actor);
 
-        this.modelMapper.map(actor, ActorServiceModel.class);
+        //this.modelMapper.map(actor, ActorServiceModel.class);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class ActorServiceImpl implements ActorService {
         actor.setBiography(actorServiceModel.getBiography());
         actor.setPhoto(actorServiceModel.getPhoto());
 
-        return this.modelMapper.map(actor, ActorServiceModel.class);
+        return this.modelMapper.map(this.actorRepository.saveAndFlush(actor), ActorServiceModel.class);
     }
 
     @Override

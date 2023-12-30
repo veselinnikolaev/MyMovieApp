@@ -36,7 +36,7 @@ public class ValidMultipartFileValidator implements ConstraintValidator<ValidMul
     }
 
         private boolean isSupportedContentType(String contentType){
-            var supportedContents = List.of("image/jpg", "image/jpeg", "image/png");
+            var supportedContents = List.of("jpg", "jpeg", "png");
             return supportedContents.contains(contentType);
         }
     }
