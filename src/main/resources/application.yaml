@@ -47,6 +47,6 @@ server:
     include-message: always
   port: 8080
 cloudinary:
-    cloud-name: 
-    api-key: 
-    api-secret: 
+    cloud-name: ${CLOUDINARY_NAME}
+    api-key: ${CLOUDINARY_KEY}
+    api-secret: ${CLOUDINARY_SECRET}
