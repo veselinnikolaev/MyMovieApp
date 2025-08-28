@@ -90,8 +90,3 @@ mvn spring-boot:run
 | **ADMIN** | Manage content and users        |
 | **ROOT**  | Full system control             |
 
----
-
-## 👨‍💻 Author
-
-**MyMovieApp** – developed by *\[Your Name]* 🎬
